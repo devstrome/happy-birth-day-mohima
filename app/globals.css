@@ -294,6 +294,35 @@ h1 em, h2 em {
   perspective: 1100px;
 }
 
+.motion-toggle {
+  position: absolute;
+  z-index: 6;
+  top: 0;
+  right: 1%;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  color: #9a5a82;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  transition: transform .2s ease, background-color .2s ease;
+}
+
+.motion-toggle span { line-height: 1; }
+.motion-paused .portrait-main,
+.motion-paused .portrait-small,
+.motion-paused .balloon-pink,
+.motion-paused .balloon-pearl,
+.motion-paused .cake-scene,
+.motion-paused .floating-note,
+.motion-paused .orbit-one,
+.motion-paused .wish-flame,
+.motion-paused .music-icon { animation-play-state: paused !important; }
+
 .stage-halo {
   position: absolute;
   top: 49%;
@@ -698,6 +727,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #8d4fc1; outline-offs
   .button-music:hover { background: rgba(255, 255, 255, .82); }
   .memory-card:hover img { transform: scale(1.045); }
   .header-note:hover { color: var(--pink-deep); background: rgba(255, 255, 255, .78); }
+  .motion-toggle:hover { transform: translateY(-2px); background-color: rgba(255, 255, 255, .82); }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -864,6 +894,7 @@ button:focus-visible, a:focus-visible { outline: 3px solid #8d4fc1; outline-offs
   .wish-made .confetti { animation: none !important; opacity: 0; }
   .button-music.is-playing .music-icon { animation: none !important; }
   .memory-card img { transform: none !important; }
+  .motion-toggle { display: none; }
 }
 
 /* `?reduce=1` gives the reduced-motion path a repeatable review state. */
@@ -896,6 +927,7 @@ html[data-motion="reduce"] .balloon-pink { transform: rotate(-5deg) !important; 
 html[data-motion="reduce"] .balloon-pearl { transform: rotate(4deg) !important; }
 html[data-motion="reduce"] .cake-scene { transform: rotate(-6deg) !important; }
 html[data-motion="reduce"] .confetti { opacity: 0 !important; }
+html[data-motion="reduce"] .motion-toggle { display: none; }
 
 @media (prefers-reduced-transparency: reduce) {
   .glass-panel {

@@ -52,6 +52,7 @@ const melody = [
 
 export default function BirthdayPage() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [motionPaused, setMotionPaused] = useState(false);
   const [wishMade, setWishMade] = useState(false);
   const [celebration, setCelebration] = useState(0);
   const audioContextRef = useRef<AudioContext | null>(null);
@@ -132,7 +133,7 @@ export default function BirthdayPage() {
   };
 
   return (
-    <main className="page-shell">
+    <main className={`page-shell${motionPaused ? " motion-paused" : ""}`}>
       <a className="skip-link" href="#main-content">Skip to the birthday wishes</a>
       <div className="ambient ambient-one" aria-hidden="true" />
       <div className="ambient ambient-two" aria-hidden="true" />
@@ -174,6 +175,16 @@ export default function BirthdayPage() {
         </div>
 
         <div className="hero-stage" aria-label="A little birthday portrait gallery">
+          <button
+            className="motion-toggle glass-panel"
+            type="button"
+            onClick={() => setMotionPaused((paused) => !paused)}
+            aria-pressed={motionPaused}
+            aria-label={motionPaused ? "Resume page animations" : "Pause page animations"}
+            title={motionPaused ? "Resume animations" : "Pause animations"}
+          >
+            <span aria-hidden="true">{motionPaused ? "▶" : "Ⅱ"}</span>
+          </button>
           <div className="stage-halo" aria-hidden="true" />
           <div className="orbit orbit-one" aria-hidden="true" />
           <div className="orbit orbit-two" aria-hidden="true" />
